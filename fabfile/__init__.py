@@ -4,6 +4,8 @@ Fabric's own fabfile.
 
 from __future__ import with_statement
 
+import platform
+
 import nose
 
 from fabric.api import abort, local, task
@@ -20,7 +22,9 @@ def test(args=None):
 
     Specify string argument ``args`` for additional args to ``nosetests``.
     """
-    default_args = "-sv --with-doctest --nologcapture --with-color"
+    default_args = "-sv --with-doctest --nologcapture"
+    if platform.system() != 'Darwin':
+        default_args += "--with-color"
     default_args += (" " + args) if args else ""
     nose.core.run_exit(argv=[''] + default_args.split())
 
