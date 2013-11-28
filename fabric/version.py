@@ -6,6 +6,7 @@ problems with ``__init__.py`` (which is loaded by setup.py during installation,
 which in turn needs access to this version information.)
 """
 from subprocess import Popen, PIPE
+
 from os.path import abspath, dirname
 
 
